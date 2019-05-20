@@ -1,0 +1,17 @@
+package beans;
+
+public class produto {
+
+	private int quantidade;
+
+	//Set and Get
+	
+	public int getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
+	
+}

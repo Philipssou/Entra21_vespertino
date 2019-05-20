@@ -1,0 +1,14 @@
+package exemplo03;
+
+import javax.swing.JOptionPane;
+
+public class Principal {
+
+	public static void main(String[] args) {
+		
+		//Exibindo mensagens
+		JOptionPane.showMessageDialog(null, "Hoje é terça-feira");
+
+	}
+
+}

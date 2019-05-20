@@ -1,0 +1,79 @@
+package acao;
+
+import javax.swing.table.DefaultTableModel;
+
+import Principal.Principal;
+import beans.colaborador;
+import dados.dados;
+
+public class acao {
+
+	//Cadastrar colaborador
+	public void cadastrar(colaborador c) {
+		dados.vetorColaborador.add(c);
+	}
+	
+	//Selecionar
+	public DefaultTableModel selecionar() {
+		
+		DefaultTableModel dadosTabela = new DefaultTableModel();
+		dadosTabela.addColumn("Colaborador");
+		dadosTabela.addColumn("Salário Liquido");
+		
+		for(int i=0; i< dados.vetorColaborador.size(); i++) {
+			dadosTabela.addRow(new Object[] {
+					dados.vetorColaborador.get(i).getColaborador(),
+					dados.vetorColaborador.get(i).getSalarioLiquido(),
+			});
+		}
+		
+	return dadosTabela;
+	}
+
+	public double obterSalarioBruto(int selectedItem) {
+		
+		double salario = 0;
+		
+		if(selectedItem == 0) {
+			salario = 900;
+			
+		}else if (selectedItem == 1) {
+			salario = 1300;
+			
+		}else if (selectedItem == 2) {
+			salario = 1800;
+			
+		}else if (selectedItem == 3) {
+			salario = 2400;
+			
+		}else if (selectedItem == 4) {
+			salario = 2700;
+			
+		}else if (selectedItem == 5) {
+			salario = 3200;
+			
+		}else if (selectedItem == 6) {
+			salario = 3600;
+			
+		}else if (selectedItem == 7) {
+			salario = 4400;
+			
+		}
+		
+		return salario;
+	}
+
+	public double obterSalarioLiquido(int selectItem) {
+		double salarioliquido = 0;
+		
+		if(selectItem == 0) {
+			salarioliquido = 900*0.06;
+		}
+		
+		
+		return salarioliquido;
+	}
+	
+	
+	
+}

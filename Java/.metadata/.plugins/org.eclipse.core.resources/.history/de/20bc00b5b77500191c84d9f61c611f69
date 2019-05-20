@@ -1,0 +1,195 @@
+package formulario;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import acao.acao;
+import beans.login;
+
+import java.awt.Color;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.border.LineBorder;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public class FormularioAlterar extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField txtNome;
+	private JTextField txtSenha;
+	private JTextField txtEmail;
+	public static JTable table;
+	/**
+	 * Create the frame.
+	 */
+	public FormularioAlterar() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(150, 400, 490, 552);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		//Instanciar acao
+		acao a = new acao();
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(0, 274, 474, 239);
+		contentPane.add(scrollPane);
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBackground(new Color(250, 128, 114));
+		panel.setBounds(0, 0, 474, 274);
+		contentPane.add(panel);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setEnabled(false);
+		comboBox.setBounds(128, 135, 336, 22);
+		panel.add(comboBox);
+		comboBox.addItem("Administrador");
+		comboBox.addItem("Membro mortal");
+		
+		JLabel lblIndice = new JLabel("");
+		lblIndice.setBounds(0, 0, 48, 14);
+		panel.add(lblIndice);
+		
+		table = new JTable(a.selecionar());
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				//Obter o indice a ser alterado
+				int indice = table.getSelectedRow();
+				
+				//Obter dados de cada coluna
+				String nome = table.getValueAt(indice, 0).toString();				
+				String senha = table.getValueAt(indice, 1).toString();	
+				String tipo = table.getValueAt(indice, 2).toString();	
+				String email = table.getValueAt(indice, 3).toString();	
+				
+				//Enviando dados ao formulario
+				lblIndice.setText(String.valueOf(indice));
+				txtNome.setText(nome);
+				txtEmail.setText(email);
+				txtSenha.setText(senha);
+				
+				switch (tipo) {
+				case "Administrador":
+					comboBox.setSelectedIndex(0);
+					break;
+					
+				case "Mero mortal":
+					comboBox.setSelectedIndex(1);
+				}
+				
+			}
+		});
+		
+		table.setBackground(Color.WHITE);
+		scrollPane.setViewportView(table);
+	
+		
+		
+		txtNome = new JTextField();
+		txtNome.setColumns(10);
+		txtNome.setBounds(130, 66, 334, 20);
+		panel.add(txtNome);
+		
+		txtSenha = new JTextField();
+		txtSenha.setColumns(10);
+		txtSenha.setBounds(130, 101, 334, 20);
+		panel.add(txtSenha);
+
+		txtEmail = new JTextField();
+		txtEmail.setColumns(10);
+		txtEmail.setBounds(130, 168, 334, 20);
+		panel.add(txtEmail);
+		
+		
+		
+		JLabel label = new JLabel("CADASTRAMENTO HABBO HOTEL VIRUS 2019");
+		label.setForeground(Color.BLACK);
+		label.setFont(new Font("Swis721 Hv BT", Font.PLAIN, 14));
+		label.setBounds(65, 11, 325, 18);
+		panel.add(label);
+		
+		JLabel label_1 = new JLabel("Nome de Usu\u00E1rio");
+		label_1.setForeground(Color.WHITE);
+		label_1.setFont(new Font("Verdana", Font.BOLD, 11));
+		label_1.setBounds(0, 63, 108, 24);
+		panel.add(label_1);
+		
+		JLabel label_2 = new JLabel("Senha");
+		label_2.setForeground(Color.WHITE);
+		label_2.setFont(new Font("Verdana", Font.BOLD, 11));
+		label_2.setBounds(10, 98, 88, 24);
+		panel.add(label_2);
+		
+		JLabel label_3 = new JLabel("Tipo de Usu\u00E1rio");
+		label_3.setForeground(Color.WHITE);
+		label_3.setFont(new Font("Verdana", Font.BOLD, 11));
+		label_3.setBounds(10, 133, 108, 24);
+		panel.add(label_3);
+		
+		JLabel label_4 = new JLabel("Email");
+		label_4.setForeground(Color.WHITE);
+		label_4.setFont(new Font("Verdana", Font.BOLD, 11));
+		label_4.setBounds(10, 168, 88, 24);
+		panel.add(label_4);
+		
+		JButton btnAlterar = new JButton("Alterar");
+		btnAlterar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				//Obter o indice a ser alterado
+				int indice = Integer.parseInt(lblIndice.getText());
+
+				//Instanciar um objeto da classe jogo
+				login l = new login();
+				l.setNome(txtNome.getText());
+				l.setSenha(txtSenha.getText());
+				l.setEmail(txtEmail.getText());
+				
+				//Realizar alteração
+				a.alterar(indice, l);
+				
+				//Atualizar tabela
+				table.setModel(a.selecionar());
+
+				//Limpar os campos
+				txtNome.setText("");
+				txtEmail.setText("");
+				txtSenha.setText("");
+				lblIndice.setText("");
+				
+				//Cursos no campo nome
+				txtNome.requestFocus();
+				
+				//Mnesagem
+				JOptionPane.showMessageDialog(null , "Jogo alterado com sucesso");
+				
+			}
+		});
+		
+		btnAlterar.setForeground(Color.BLACK);
+		btnAlterar.setFont(new Font("Segoe UI Historic", Font.BOLD, 11));
+		btnAlterar.setBackground(Color.WHITE);
+		btnAlterar.setBounds(161, 225, 142, 38);
+		panel.add(btnAlterar);
+	}
+}
+

@@ -1,0 +1,21 @@
+package principal;
+
+import pagamento.Credito;
+import pagamento.Debito;
+
+public class Principal {
+
+	public static void main(String[] args) {
+		
+		//Poli -> Varias/Muitas
+		//Morphus -> Formas
+		
+		//Objetor
+		Debito d = new Credito();
+		d.tributos(1000);
+		d.msg();
+		
+
+	}
+
+}

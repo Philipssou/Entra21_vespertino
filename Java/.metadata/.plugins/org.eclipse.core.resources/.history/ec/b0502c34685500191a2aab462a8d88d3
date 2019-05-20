@@ -1,0 +1,18 @@
+package exemplo03;
+
+import javax.swing.JOptionPane;
+
+public class Principal {
+
+	public static void main(String[] args) {
+		
+		//Exibindo mensagens
+		//JOptionPane.showMessageDialog(null, "Hoje é terça-feira");
+		JOptionPane.showMessageDialog(null, "Erro", "Título", JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(null, "Perigo", "Título", JOptionPane.WARNING_MESSAGE);
+		JOptionPane.showMessageDialog(null, "Tudo bem?", "Título", JOptionPane.QUESTION_MESSAGE);
+		JOptionPane.showMessageDialog(null, "Isso é Java!", "Título", JOptionPane.INFORMATION_MESSAGE);
+		
+	}
+
+}

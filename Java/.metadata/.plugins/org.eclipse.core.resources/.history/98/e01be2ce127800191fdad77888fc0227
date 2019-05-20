@@ -1,0 +1,18 @@
+package beans;
+
+public class produto {
+
+	private int quantidade;
+	private int arroz, feijao,
+
+	//Set and Get
+	
+	public int getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
+	
+}

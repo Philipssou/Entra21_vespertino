@@ -1,0 +1,24 @@
+package acao;
+
+import javax.swing.table.DefaultTableModel;
+
+import beans.colaborador;
+import dados.dados;
+
+public class acao {
+
+	//Cadastrar colaborador
+	public void cadastrar(colaborador c) {
+		dados.vetorColaborador.add(c);
+	}
+	
+	//Selecionar
+	public DefaultTableModel selecionar() {
+		
+		DefaultTableModel dadosTabela = new DefaultTableModel();
+		dadosTabela.addColumn("Colaborador");
+		dadosTabela.addColumn("Salário Liquido");
+		
+	return dadosTabela;
+	}
+}

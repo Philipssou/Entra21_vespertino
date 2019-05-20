@@ -1,0 +1,42 @@
+package acao;
+
+import javax.swing.table.DefaultTableModel;
+
+import beans.produto;
+import dados.dados;
+
+
+public class acao {
+
+	//Cadastrar quantidade
+	public void quantidade(produto q) {
+		dados.vetorProdutos.add(q);
+	}	
+	
+	//Selecionar
+		public DefaultTableModel selecionar() {
+			
+			DefaultTableModel dadosTabela = new DefaultTableModel();
+			dadosTabela.addColumn("Arroz");
+			dadosTabela.addColumn("Feijão");
+			dadosTabela.addColumn("Batata");
+			dadosTabela.addColumn("Maçã");
+			
+			for(int i=0; i< dados.vetorProdutos.size(); i++) {
+				dadosTabela.addRow(new Object[] {
+						dados.vetorProdutos.get(i).getArroz(),
+						dados.vetorProdutos.get(i).getFeijao(),
+				});
+			}
+			
+		return dadosTabela;
+		}
+	
+	//Contador
+	public int contador(int getSelectItem) {
+		int contar = 0;
+		
+		return contar;
+	}
+	
+}

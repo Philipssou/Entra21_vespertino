@@ -1,0 +1,21 @@
+package acao;
+
+import beans.produto;
+import dados.dados;
+
+
+public class acao {
+
+	//Cadastrar quantidade
+	public void quantidade(produto q) {
+		dados.vetorProdutos.add(q);
+	}
+	
+	//Contador
+	public int contador(int getSelectItem) {
+		int contar = 0;
+		
+		return contar;
+	}
+	
+}

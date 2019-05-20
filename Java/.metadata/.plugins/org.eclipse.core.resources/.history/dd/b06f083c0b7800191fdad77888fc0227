@@ -1,0 +1,164 @@
+package acao;
+
+import javax.swing.table.DefaultTableModel;
+
+import Principal.Principal;
+import beans.colaborador;
+import dados.dados;
+
+public class acao {
+
+	//Cadastrar colaborador
+	public void cadastrar(colaborador c) {
+		dados.vetorColaborador.add(c);
+	}
+	
+	//Selecionar
+	public DefaultTableModel selecionar() {
+		
+		DefaultTableModel dadosTabela = new DefaultTableModel();
+		dadosTabela.addColumn("Colaborador");
+		dadosTabela.addColumn("Salário Liquido");
+		
+		for(int i=0; i< dados.vetorColaborador.size(); i++) {
+			dadosTabela.addRow(new Object[] {
+					dados.vetorColaborador.get(i).getColaborador(),
+					dados.vetorColaborador.get(i).getSalarioLiquido(),
+			});
+		}
+		
+	return dadosTabela;
+	}
+	//Metodo
+	public double obterSalarioBruto(int selectedItem) {
+		
+		double salario = 0;
+		
+		if(selectedItem == 0) {
+			salario = 900;
+			
+		}else if (selectedItem == 1) {
+			salario = 1300;
+			
+		}else if (selectedItem == 2) {
+			salario = 1800;
+			
+		}else if (selectedItem == 3) {
+			salario = 2400;
+			
+		}else if (selectedItem == 4) {
+			salario = 2700;
+			
+		}else if (selectedItem == 5) {
+			salario = 3200;
+			
+		}else if (selectedItem == 6) {
+			salario = 3600;
+			
+		}else if (selectedItem == 7) {
+			salario = 4400;
+			
+		}
+		
+		return salario;
+	}
+	
+	//Metodo
+	public double obterValeTransporte(int selectItem) {
+		double valetransporte = 0;
+		
+		if(selectItem == 0) {
+			valetransporte = (900*0.06);
+		}else if (selectItem == 1) {
+			valetransporte = (1300*0.06);
+		}else if (selectItem == 2) {
+			valetransporte = (1800*0.06);
+		}else if (selectItem == 3) {
+			valetransporte = (2400*0.06);
+		}else if (selectItem == 4) {
+			valetransporte = (2700*0.06);
+		}else if (selectItem == 5) {
+			valetransporte = (3200*0.06);
+		}else if (selectItem == 6) {
+			valetransporte = (3600*0.06);
+		}else if (selectItem == 7) {
+			valetransporte = (4400*0.06);
+		}
+		
+		
+		return valetransporte;
+	}
+	
+	//Metodo
+	public double obterImpostodeRenda (int selectItem) {
+		double impostoderenda = 0;
+	
+		if (selectItem == 0) {
+			impostoderenda = 0;
+		}else if(selectItem == 1) {
+			impostoderenda = (1300*0.04);
+		}else if(selectItem == 2) {
+			impostoderenda = (1800*0.055);
+		}else if(selectItem == 3) {
+			impostoderenda = (2400*0.06);
+		}else if(selectItem == 4) {
+			impostoderenda = (2700*0.065);
+		}else if(selectItem == 5) {
+			impostoderenda = (3200*0.07);
+		}else if(selectItem == 6) {
+			impostoderenda = (3600*0.075);
+		}else if(selectItem == 7) {
+			impostoderenda = (4400*0.08);
+		}
+		
+		return impostoderenda;
+	}
+	
+	//Metodo
+	public double obterSalarioLiquido (int selectedItem) {
+		double salarioLiquido = 0;
+		
+		if(selectedItem == 0) {
+			salarioLiquido = 900 - (900*0.06);
+		}else if (selectedItem == 1) {
+			salarioLiquido = 1300 - (1300*0.06);
+		}else if (selectedItem == 2) {
+			salarioLiquido = 1800 - (1800*0.06);
+		}else if (selectedItem == 3) {
+			salarioLiquido = 2400 - (2400*0.06);
+		}else if (selectedItem == 4) {
+			salarioLiquido = 2700 - (2700*0.06);
+		}else if (selectedItem == 5) {
+			salarioLiquido = 3200 - (3200*0.06);
+		}else if (selectedItem == 6) {
+			salarioLiquido = 3600 - (3600*0.06);
+		}else if (selectedItem == 7) {
+			salarioLiquido = 4400 - (4400*0.06);
+		}
+		
+		return salarioLiquido;
+	}
+	
+	//Metodo vale saude
+	public double valeTransporte(boolean checkbox,double salarioBruto){
+
+		double valeTransporte = checkbox == true ? salarioBruto * 0.06 : 0;
+		if(checkbox == false) {
+			salarioBruto = salarioBruto / 0.06;
+		}
+		return valeTransporte;
+	}
+	
+	public double planoSaude(boolean checkbox2,double salarioBruto){
+
+		double saude = checkbox2 == true ? salarioBruto * 0.03 : 0;
+		return saude;
+	}
+	
+	public double Clube(boolean checkbox3,double salarioBruto){
+
+		double Clubef = checkbox3 == true ? (+ 100) : (- 100);
+		return Clubef;
+	}
+	
+}

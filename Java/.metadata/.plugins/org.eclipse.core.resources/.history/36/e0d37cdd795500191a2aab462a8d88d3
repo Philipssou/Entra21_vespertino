@@ -1,0 +1,12 @@
+package exemplo11;
+
+public class Principal {
+
+	public static void main(String[] args) {
+		
+		//Restos da divisão MOD
+		System.out.println(20 % 2 == 0? "Par" : "Impar");
+
+	}
+
+}
